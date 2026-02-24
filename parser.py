@@ -7,6 +7,9 @@ from docx import Document
 from leadership_scorer import analyse_resume
 import json
 
+#install 
+#python -m spacy download en_core_web_sm  
+
 def extract_text_from_pdf(path: Path) -> str:
     try:
         with pdfplumber.open(path) as pdf:

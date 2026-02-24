@@ -13,6 +13,8 @@ Output: structured features dict + leadership score (0–100)
   6. Ownership   (max 10) — accountability / end-to-end language
   7. Seniority   (max 10) — title level + years of experience
 
+install 
+python -m spacy download en_core_web_sm  
 """
 
 import re
