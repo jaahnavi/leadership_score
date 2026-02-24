@@ -1,43 +1,75 @@
-# resume_extractor
+Leadership Score v4 – 7-Dimensional Model
 
-## 💻 How to use with VS Code
-If you are using **Visual Studio Code**, follow these steps to get synced:
+Leadership Score v4 is a resume analysis system that extracts leadership-related signals from PDF resumes and evaluates candidates using a structured 7-dimensional leadership model. This version replaces earlier keyword-only scoring approaches with a dimension-based evaluation framework.
 
-1. **Clone the Repo:** 
-   - Open VS Code.
-   - Press `Ctrl + Shift + P` and type `Git: Clone`.
-   - Paste this repository's URL.
-2. **Open Terminal:**
-   - Go to `Terminal > New Terminal` in the top menu.
-3. **Install Dependencies:**
-   - In the terminal at the bottom, type: `pip install -r requirements.txt`
-4. **Select Python Interpreter:**
-   - If you see yellow squiggly lines under your imports, press `Ctrl + Shift + P`, type `Python: Select Interpreter`, and pick your installed Python version.
-5. **Running the Script:**
-   - Type `python parser.py your_file.pdf` directly in the VS Code terminal.
+Overview
+
+   The system:
+   Parses a PDF resume
+   Extracts relevant leadership signals
+   Scores the resume across seven leadership dimensions
+   Produces a final composite leadership score
+   The scoring model is deterministic and rule-based (not ML-based), designed for transparency and interpretability.
 
 
+7 Leadership Dimensions
+The model evaluates leadership across the following dimensions:
+   
+      1.Strategic Thinking: Long-term planning, vision, decision-making, roadmap ownership.   
+      2.Execution & Results: Delivery metrics, KPIs, measurable outcomes, performance impact.   
+      3.Initiative & Ownership: Founding initiatives, driving projects independently, accountability.   
+      4.Influence & Communication: Stakeholder management, presentations, cross-functional alignment.   
+      5.Team Leadership: Managing teams, mentoring, recruiting, organizational coordination.   
+      6.Innovation & Problem Solving: Process improvement, systems building, optimization, technical innovation.   
+      7.Impact & Scale: Growth metrics, revenue impact, scaling systems, operational expansion.
 
-## 🖥️ Manual Setup (No VS Code)
-If you prefer using your computer's native terminal:
-
-1. **Download:** Click the green `<> Code` button above and select **Download ZIP**. Extract it to your Desktop.
-2. **Open Terminal:**
-   - **Windows:** Search for `cmd` or `PowerShell`.
-   - **Mac/Linux:** Search for `Terminal`.
-3. **Navigate to the folder:**
-   Type `cd` followed by a space, then drag the folder into the terminal window and hit Enter.
-   *(Example: `cd Desktop/resume-extractor-main`)*
-4. **Install Engines:**
-   Run `pip install -r requirements.txt`
-5. **Run the Parser:**
-   `python parser.py your_resume.pdf`
+Each dimension is scored independently and combined into an overall leadership score.
 
 
 
-Google Colab (Cloud / No Install)
-Open Google Colab.
-Upload parser.py and requirements.txt.
-In a code cell, run: !pip install -r requirements.txt
-To parse, run: !python parser.py your_uploaded_resume.pdf
+
+Project Structure
+
+      resume_extractor/
+      │
+      ├── parser.py
+      ├── leadership_scorer_v4.py
+      ├── requirements.txt
+      └── README.md
+      
+      parser.py – Entry point. Handles PDF parsing and orchestration.
+      leadership_scorer_v4.py – Implements the 7-dimensional scoring logic.
+      requirements.txt – Python dependencies.
+
+
+Requirements
+      Python 3.8+
+      pip
+
+Install dependencies: 
+
+      pip install -r requirements.txt
+
+
+Usage
+
+Run the parser with a resume in PDF of docx format:   
+
+      python parser.py your_resume.pdf
+   
+   OR
+      
+      python parser.py your_resume.docx
+
+
+
+Design Rationale
+
+   The v4 architecture focuses on:
+      Dimensional separation instead of flat keyword scoring
+      Interpretability (clear mapping between signals and score)
+      Extensibility (new dimensions or weights can be added easily)
+      Deterministic scoring for reproducibility
+
+
 
