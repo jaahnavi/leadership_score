@@ -1,0 +1,34 @@
+{
+  
+  "_max_scores": {
+    "influence":   20,
+    "impact":      25,
+    "initiative":  15,
+    "mentorship":  15,
+    "scope_scale": 15,
+    "ownership":   10,
+    "seniority":   10
+  },
+
+  "weights": {
+    "influence":   20.0,
+    "impact":      25.0,
+    "initiative":  15.0,
+    "mentorship":  15.0,
+    "scope_scale": 15.0,
+    "ownership":   10.0,
+    "seniority":   10.0
+  },
+
+  
+  "grade_thresholds": {
+    "A": 85,
+    "B": 70,
+    "C": 55,
+    "D": 40
+  },
+
+  "version": "default-v1",
+  "last_updated": "2026-03-09",
+  "source": "manual"
+}
