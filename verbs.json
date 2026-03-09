@@ -1,0 +1,20 @@
+{
+  "_meta": {
+    "last_updated": "2026-03-02",
+    "updated_by": "manual — run update_verbs.py to refresh via AI"
+  },
+  "INFLUENCE_VERBS": [
+    "lead", "manage", "head", "direct", "oversee",
+    "supervise", "run", "coordinate", "govern", "command"
+  ],
+  "INITIATIVE_VERBS": [
+    "found", "create", "launch", "build", "establish", "initiate",
+    "design", "develop", "spearhead", "champion", "transform", "scale",
+    "drive", "introduce", "pioneer", "restructure", "overhaul",
+    "execute", "deliver"
+  ],
+  "MENTORSHIP_VERBS": [
+    "mentor", "train", "coach", "teach", "guide",
+    "onboard", "upskill", "educate", "advise"
+  ]
+}
