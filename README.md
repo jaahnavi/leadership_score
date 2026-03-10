@@ -1,6 +1,6 @@
 Leadership Score v4 – 7-Dimensional Model
 
-Leadership Score v4 is a resume analysis system that extracts leadership-related signals from PDF resumes and evaluates candidates using a structured 7-dimensional leadership model. This version replaces earlier keyword-only scoring approaches with a dimension-based evaluation framework.
+Leadership Score v4 is a resume analysis system that extracts leadership-related signals from PDF and docx resumes and evaluates candidates using a structured 7-dimensional leadership model and stores the result ina SQLite database. Designed for transparency, auditability and ML integration.
 
 Overview
 
@@ -32,9 +32,14 @@ Project Structure
 
       resume_extractor/
       │
-      ├── parser.py
-      ├── leadership_scorer_v4.py
-      ├── requirements.txt
+      ├── parser.py --Entry point: batch/single scoring, SQLite storage, terminal summary
+      ├── leadership_scorer.py --NLP feature extraction and 7-dimension scoring logic
+      ├── weights.json --Dimension weights — edit this to update weights of scoring logic
+      ├── calibrate_and_train.py --Two-level regression: per-dimension R² + weight optimisation
+      ├── verbs.json --Influence, initiative, and mentorship verb sets
+      ├── update_verbs.py --Add API key and run to update verb.json 
+      ├── leadership_scores.db --SQLite DB, auto-created on first run
+      ├── requirements.txt --Python dependencies
       └── README.md
       
       parser.py – Entry point. Handles PDF parsing and orchestration.
@@ -50,27 +55,36 @@ Install dependencies:
 
       pip install -r requirements.txt
       python -m spacy download en_core_web_sm 
-
-
 Usage
+Batch scoring
 
-Run the parser with a resume in PDF of docx format:   
+      python parser.py resume/              # score all, save to DB
+      python parser.py resume/ --force      # rescore even unchanged files
+      python parser.py resume/ --out results  # also write per-resume JSON
 
-      python parser.py your_resume.pdf
-   
-   OR
-      
-      python parser.py your_resume.docx
+Single file
 
+      python parser.py candidate.pdf
+      python parser.py candidate.docx --out results
 
+Calibration and weight optimisation
 
-Design Rationale
+      python calibrate_and_train.py --csv scores_norm.csv
+      python calibrate_and_train.py --csv scores_norm.csv --export-weights weights_ml.json
 
-   The v4 architecture focuses on:
-      Dimensional separation instead of flat keyword scoring
-      Interpretability (clear mapping between signals and score)
-      Extensibility (new dimensions or weights can be added easily)
-      Deterministic scoring for reproducibility
+Updating Weights
+When the ML model produces new weights, update only the weights object in weights.json — no code changes needed:
+
+      {
+        "weights": {
+          "influence": 20.0, "impact": 25.0, "initiative": 15.0,
+          "mentorship": 15.0, "scope_scale": 15.0, "ownership": 10.0, "seniority": 10.0
+        },
+        "version": "ml-v1"
+      }
+
+The weights_version is saved in the DB with every score for auditability.
+
 
 
 
